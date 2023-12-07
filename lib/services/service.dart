@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import '../news_model.dart';
+import '../models/news_model.dart';
 
 class ApiService {
   static const String apiUrl = 'https://www.kalbela.com/json-feed/national.json';

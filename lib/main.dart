@@ -1,5 +1,5 @@
-import 'package:bangla_calendar/home_page.dart';
-import 'package:bangla_calendar/sync_fusion.dart';
+import 'package:bangla_calendar/pages/home_page.dart';
+import 'package:bangla_calendar/pages/sync_fusion.dart';
 import 'package:flutter/material.dart';
 
 void main() {

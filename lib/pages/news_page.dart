@@ -1,7 +1,7 @@
 import 'package:bangla_calendar/services/service.dart';
 import 'package:bangla_calendar/utils/global_var.dart';
 import 'package:flutter/material.dart';
-import 'news_model.dart';
+import '../models/news_model.dart';
 
 
 class NewsPage extends StatefulWidget {
