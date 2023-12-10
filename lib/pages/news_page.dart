@@ -1,8 +1,9 @@
+import 'package:bangla_calendar/pages/bangladesh_map.dart';
 import 'package:bangla_calendar/services/service.dart';
 import 'package:bangla_calendar/utils/global_var.dart';
+import 'package:bangla_calendar/widgets/dialog.dart';
 import 'package:flutter/material.dart';
 import '../models/news_model.dart';
-
 
 class NewsPage extends StatefulWidget {
   const NewsPage({Key? key}) : super(key: key);
@@ -33,7 +34,13 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('NewsPage'),
+        title: InkWell(
+          onLongPress: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>BangladeshMap()));
+          },
+            child: Text('NewsPage'),
+        ),
+        centerTitle: true,
       ),
       body: FutureBuilder<List<NewsItem>>(
         future: _newsList,
@@ -58,30 +65,14 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
               itemBuilder: (context, index) {
                 NewsItem newsItem = snapshot.data![index];
                 return ListTile(
-                  title: Text(globalVar.utf8convert(newsItem.headline),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                  subtitle: Text(globalVar.utf8convert(newsItem.details),style: TextStyle(),maxLines: 3,overflow: TextOverflow.ellipsis,),
+                  title: Text(GlobalVar.utf8convert(newsItem.headline),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                  subtitle: Text(GlobalVar.utf8convert(newsItem.details),style: TextStyle(),maxLines: 3,overflow: TextOverflow.ellipsis,),
                   onTap: () {
                     // Handle item tap, e.g., navigate to the detail page
-                    print('Tapped on: ${globalVar.utf8convert(newsItem.headline)}');
+                    print('Tapped on: ${GlobalVar.utf8convert(newsItem.headline)}');
                   },
                   onLongPress: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text('Long Press Dialog'),
-                          content: Text('Hi there!'),
-                          actions: <Widget>[
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Text('Close'),
-                            ),
-                          ],
-                        );
-                      },
-                    );
+                    ReUsableDialog.show(context, 'News ${GlobalVar.utf8convert(newsItem.headline)}');
                   },
                 );
               },

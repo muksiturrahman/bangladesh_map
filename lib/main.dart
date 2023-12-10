@@ -1,24 +1,30 @@
-import 'package:bangla_calendar/pages/home_page.dart';
-import 'package:bangla_calendar/pages/sync_fusion.dart';
+import 'package:bangla_calendar/pages/bangladesh_map.dart';
+import 'package:intl/date_symbol_data_local.dart'; // Correct import statement
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:bangla_calendar/pages/sf_calendar.dart';
 
 void main() {
-  runApp(const MyApp());
+  initializeDateFormatting('bn', null).then((_) {
+    runApp(MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black26),
-        useMaterial3: true,
-      ),
-      home: CalendarPro(),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en'), // English
+        const Locale('bn', 'BD'), // Bangla
+      ],
+      locale: const Locale('bn', 'BD'), // Set the initial locale to Bangla
+      home: BangladeshMap(),
     );
   }
 }

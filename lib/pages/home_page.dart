@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
             onLongPress: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>NewsPage()));
             },
-              child: Text('বাংলায় ইংরেজি ক্যালেন্ডার'),
+            child: Text('বাংলায় ইংরেজি ক্যালেন্ডার'),
           ),
           centerTitle: true,
         ),
