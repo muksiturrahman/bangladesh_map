@@ -62,6 +62,7 @@ class _CalendarProState extends State<CalendarPro> {
                 view: CalendarView.month,
                 todayHighlightColor: Colors.black,
                 monthViewSettings: MonthViewSettings(
+                  showTrailingAndLeadingDates: false,
                   appointmentDisplayCount: 2,
                   monthCellStyle: MonthCellStyle(
                     textStyle: TextStyle(
@@ -107,24 +108,18 @@ class _CalendarProState extends State<CalendarPro> {
                   });
                 },
                 monthCellBuilder: (BuildContext buildContext, details) {
-                  var mid = details.visibleDates.length ~/ 2.toInt();
-                  var midDate = details.visibleDates[0].add(Duration(days: mid));
-                  if (details.date.month != midDate.month) {
-                    return Container();
-                  } else {
-                    return Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: details.date == currentDate.dateOnly() ? Colors.green : Colors.transparent,
+                  return Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: details.date == currentDate.dateOnly() ? Colors.green : Colors.transparent,
+                    ),
+                    child: Center(
+                      child: Text(
+                        formatBanglaDate(details.date),
+                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: details.date == currentDate.dateOnly() ? Colors.white : Colors.black,),
                       ),
-                      child: Center(
-                        child: Text(
-                          formatBanglaDate(details.date),
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: details.date == currentDate.dateOnly() ? Colors.white : Colors.black,),
-                        ),
-                      ),
-                    );
-                  }
+                    ),
+                  );
                 },
               ),
             ),
