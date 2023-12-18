@@ -56,7 +56,7 @@ class _CalendarProState extends State<CalendarPro> {
           children: [
             Container(
               padding: EdgeInsets.all(8),
-              height: 500,
+              height: 400,
               child: SfCalendar(
                 showNavigationArrow: true,
                 view: CalendarView.month,
@@ -107,7 +107,7 @@ class _CalendarProState extends State<CalendarPro> {
                     }
                   });
                 },
-                monthCellBuilder: (BuildContext buildContext, details) {
+                monthCellBuilder: (BuildContext buildContext, MonthCellDetails details) {
                   return Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
